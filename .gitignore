@@ -50,6 +50,9 @@ wheels/
 pip-log.txt
 pip-delete-this-directory.txt
 
+# Secret Key
+secretkey.txt
+
 # Unit test / coverage reports
 htmlcov/
 .tox/
