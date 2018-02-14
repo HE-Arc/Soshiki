@@ -1,0 +1,58 @@
+{% extends 'SoshikiApp/base.html' %}
+
+{% block title %}Soshiki Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+
+      <h1 class="display-4">Soshiki's Tables</h1>
+      <p class="lead text-muted">A list of Tables.</p>
+
+      <a href="{% url 'table-create' %}" class="btn btn-success btn-sm">Add a table</a>
+
+      <hr/>
+
+      <table class="table table-bordered mt-5">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Favorite</th>
+            <th>Private</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+      {% for table in table_list %}
+
+      <tr>
+        <td>
+          {{ table.id }}
+        </td>
+        <td>
+          {{ table.name }}
+        </td>
+        <td>
+          {{ table.favorite }}
+        </td>
+        <td>
+          {{ table.private }}
+        </td>
+        <td>
+          <a href="{% url 'table-detail' table.pk %}" class="btn btn-primary btn-sm">Détails</a>
+          <a href="{% url 'table-update' table.pk %}" class="btn btn-success btn-sm">Update</a>
+          <a href="{% url 'table-delete' table.pk %}" class="btn btn-warning btn-sm">Delete</a>
+        </td>
+      </tr>
+
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

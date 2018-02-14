@@ -1,0 +1,68 @@
+{% extends 'SoshikiApp/base.html' %}
+
+{% block title %}Soshiki dashboard{% endblock %}
+
+{% block content %}
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="display-4 mb-5">Soshiki dashboard</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+
+      <div class="card">
+        <div class="card-header">
+          List of Tables
+        </div>
+        <table>
+          {% for table in tables %}
+          <tr>
+            <td>
+              <a href="{% url 'table-detail' table.pk %}">{{ table.name }}</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          List of Tables that are private
+        </div>
+        <table>
+          {% for table in table_private %}
+          <tr>
+            <td>
+              <a href="{% url 'table-detail' table.pk %}">{{ table.name }}</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          List of favorite Tables
+        </div>
+        <table>
+          {% for table in table_favorite %}
+          <tr>
+            <td>
+              <a href="{% url 'table-detail' table.pk %}">{{ table.name }}</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+</div>
+{% endblock %}

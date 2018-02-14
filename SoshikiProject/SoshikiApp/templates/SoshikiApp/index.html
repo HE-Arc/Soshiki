@@ -1,0 +1,29 @@
+<html>
+
+<head>
+  <title>Soshiki</title>
+  {% load bootstrap4 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript jquery='full' %}
+</head>
+
+<body>
+  <div class="d-flex align-items-center h-100">
+    <div class="container text-black">
+      <div class="row">
+        <div class="col-md-6">
+          <h1 class="display-1">Hey there!</h1>
+          <h2> Go to our <a href="{% url 'dashboard' %}">Dashboard</a> </h2>
+          <h4> Or log in with the <a href="/admin">admin</a></h4>
+          <p class="lead">
+            This is a test for the first template.
+          </p>
+          <p class="lead">
+            <strong>We want here to test a different quote!</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

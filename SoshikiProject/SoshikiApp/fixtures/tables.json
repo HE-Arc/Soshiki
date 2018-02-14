@@ -1,0 +1,29 @@
+[
+{
+   "model": "SoshikiApp.table",
+   "pk": 1,
+   "fields": {
+      "name": "Test 1",
+      "favorite": false,
+      "private": false
+   }
+},
+{
+   "model": "SoshikiApp.table",
+   "pk": 2,
+   "fields": {
+      "name": "Tets 2",
+      "favorite": true,
+      "private": false
+   }
+},
+{
+   "model": "SoshikiApp.table",
+   "pk": 3,
+   "fields": {
+      "name": "Test 3",
+      "favorite": true,
+      "private": true
+   }
+}
+]
