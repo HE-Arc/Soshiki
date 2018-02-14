@@ -32,13 +32,13 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',') if os.getenv('ALLOWED_HOST
 # Application definition
 
 INSTALLED_APPS = [
-    'SoshikiApp.apps.SoshikiappConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'SoshikiApp',
     'bootstrap4',
     'django_generate_secret_key',
 ]

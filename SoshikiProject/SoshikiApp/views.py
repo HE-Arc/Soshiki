@@ -7,7 +7,6 @@ from .models import Table
 
 def index(request):
 	context = {}
-
 	return render(request, 'SoshikiApp/index.html', context)
 
 class DashboardView(generic.TemplateView):
@@ -32,13 +31,13 @@ class TableDetailView(generic.DetailView):
 class TableCreateView(generic.CreateView):
     model = Table
     fields = ['name', 'favorite', 'private']
-    success_url = reverse_lazy('dashboard-tables')
+    success_url = reverse_lazy('tables-list')
 
 class TableUpdateView(generic.UpdateView):
 	model = Table
 	fields = ['name', 'favorite', 'private']
-	success_url = reverse_lazy('dashboard-tables')
+	success_url = reverse_lazy('tables-list')
 
 class TableDeleteView(generic.DeleteView):
 	model = Table
-	success_url = reverse_lazy('dashboard-tables')
+	success_url = reverse_lazy('tables-list')
