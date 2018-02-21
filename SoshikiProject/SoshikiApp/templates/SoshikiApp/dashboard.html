@@ -31,21 +31,6 @@
 
       <div class="card">
         <div class="card-header">
-          List of Tables that are private
-        </div>
-        <table>
-          {% for table in table_private %}
-          <tr>
-            <td>
-              <a href="{% url 'table-detail' table.pk %}">{{ table.name }}</a>
-            </td>
-          </tr>
-          {% endfor %}
-        </table>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
           List of favorite Tables
         </div>
         <table>

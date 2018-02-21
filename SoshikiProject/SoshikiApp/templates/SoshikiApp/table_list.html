@@ -21,7 +21,6 @@
             <th>#</th>
             <th>Name</th>
             <th>Favorite</th>
-            <th>Private</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -37,9 +36,6 @@
         </td>
         <td>
           {{ table.favorite }}
-        </td>
-        <td>
-          {{ table.private }}
         </td>
         <td>
           <a href="{% url 'table-detail' table.pk %}" class="btn btn-primary btn-sm">Détails</a>
