@@ -22,5 +22,80 @@
       "name": "Test 3",
       "favorite": true
    }
+},
+{
+   "model": "SoshikiApp.list",
+   "pk": 1,
+   "fields": {
+      "name": "To do",
+      "position" : 1,
+      "table_id" : 1
+   }
+},
+{
+   "model": "SoshikiApp.list",
+   "pk": 2,
+   "fields": {
+      "name": "processing",
+      "position" : 2,
+      "table_id" : 1
+   }
+},
+{
+   "model": "SoshikiApp.list",
+   "pk": 3,
+   "fields": {
+      "name": "Finished",
+      "position" : 3,
+      "table_id" : 1
+   }
+},
+{
+   "model": "SoshikiApp.card",
+   "pk": 1,
+   "fields": {
+      "title":"Card1",
+      "deadline":"2038-01-19 03:14:07",
+      "description":"Description1",
+      "file":null,
+      "position" : 1,
+      "list_id" : 1
+   }
+},
+{
+   "model": "SoshikiApp.card",
+   "pk": 2,
+   "fields": {
+      "title":"Card2",
+      "deadline":"2018-01-19 03:14:07",
+      "description":"Description2",
+      "file":null,
+      "position" : 2,
+      "list_id" : 1
+   }
+},
+{
+   "model": "SoshikiApp.card",
+   "pk": 3,
+   "fields": {
+      "title":"Card3",
+      "deadline":"2038-01-19 03:14:07",
+      "description":"Description3",
+      "file":null,
+      "position" : 3,
+      "list_id" : 1
+   }
+},
+{
+   "model": "SoshikiApp.card",
+   "pk": 4,
+   "fields": {
+      "title":"Card4",
+      "deadline":"2038-01-19 03:14:07",
+      "description":"Description4",
+      "file":null,
+      "position" : 1,
+      "list_id" : 2
+   }
 }
 ]
