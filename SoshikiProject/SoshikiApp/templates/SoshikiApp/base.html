@@ -10,23 +10,43 @@
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-5">
     <a class="navbar-brand" href="/">
-      Soshiki App
+      Soshiki
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
        <span class="navbar-toggler-icon"></span>
      </button>
      <div class="collapse navbar-collapse" id="navbarText">
+       {% if user.is_authenticated %}
        <ul class="navbar-nav mr-auto">
          <li class="nav-item">
            <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
          </li>
          <li class="nav-item">
-           <a class="nav-link" href="{% url 'tables-list'%}">Tables</a>
+           <a class="nav-link" href="{% url 'tables-list' %}">Tables</a>
          </li>
        </ul>
-
+       <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link " href="#">{{ user.username }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="{% url 'logout' %}">Logout</a>
+        </li>
+      </ul>
+       {% else %}
+       <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link " href="{% url 'login' %}">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="#">Register</a>
+        </li>
+      </ul>
+      {% endif %}
+    </div>
   </nav>
   {% block content %}{% endblock %}
 </body>
+
 </html>

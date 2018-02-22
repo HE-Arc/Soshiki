@@ -1,5 +1,4 @@
-from django.urls import path
-
+from django.urls import path, include
 from .views import *
 
 urlpatterns = [
@@ -13,4 +12,9 @@ urlpatterns = [
     path('dashboard/tables/create', table_views.TableCreateView.as_view(), name='table-create'),
     path('dashboard/tables/<pk>/update', table_views.TableUpdateView.as_view(), name='table-update'),
     path('dashboard/tables/<pk>/delete', table_views.TableDeleteView.as_view(), name='table-delete'),
+]
+
+# Add Django site authentication urls (for login, logout, password management)
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
