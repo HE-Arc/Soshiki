@@ -3,7 +3,7 @@ from django.db import models
 
 class Table(models.Model):
     """
-    Table for the tangan that will contain your
+    Table for the kanban that will contain your
     organisation for one project.
     """
     name = models.CharField(max_length=200)

@@ -4,8 +4,7 @@
    "pk": 1,
    "fields": {
       "name": "Test 1",
-      "favorite": false,
-      "private": false
+      "favorite": false
    }
 },
 {
@@ -13,8 +12,7 @@
    "pk": 2,
    "fields": {
       "name": "Tets 2",
-      "favorite": true,
-      "private": false
+      "favorite": true
    }
 },
 {
@@ -22,8 +20,7 @@
    "pk": 3,
    "fields": {
       "name": "Test 3",
-      "favorite": true,
-      "private": true
+      "favorite": true
    }
 }
 ]

@@ -73,6 +73,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Soshiki.wsgi.application'
 
+# Statics files
+STATIC_URL = 'SoshikiApp/static/'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
