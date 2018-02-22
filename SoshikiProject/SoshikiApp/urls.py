@@ -7,6 +7,10 @@ urlpatterns = [
     path('', home_views.index, name='index'),
     path('dashboard', home_views.DashboardView.as_view(), name='dashboard'),
 
+    # Add Django site authentication urls (for login, logout, password management)
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/signup/', user_views.signup_view, name='signup'),
+
     # Routes for the CRUD of the Table model
     path('dashboard/tables', table_views.TablesListView.as_view(), name='tables-list'),
     path('dashboard/tables/<pk>/', table_views.TableDetailView.as_view(), name='table-detail'),
@@ -25,9 +29,4 @@ urlpatterns = [
     path('dashboard/card/create', card_views.CardCreateView.as_view(), name='card-create'),
     path('dashboard/card/<pk>/update',card_views.CardUpdateView.as_view(), name='card-update'),
     path('dashboard/card/<pk>/delete', card_views.CardDeleteView.as_view(), name='card-delete'),
-]
-
-# Add Django site authentication urls (for login, logout, password management)
-urlpatterns += [
-    path('accounts/', include('django.contrib.auth.urls')),
 ]
