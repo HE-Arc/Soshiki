@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.contrib.auth import login
+from django.http import HttpResponseRedirect
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
@@ -23,8 +25,8 @@ def signup_view(request):
             to_email = form.cleaned_data.get('email')
             email = EmailMessage(mail_subject, message, to=[to_email])
             email.send()
-
-            return render(request, 'SoshikiApp/dashboard.html', {'user': user})
+            login(request, user)
+            return HttpResponseRedirect('/')
     else:
         form = SignupForm()
     return render(request, 'Registration/signup.html', {'form': form})
