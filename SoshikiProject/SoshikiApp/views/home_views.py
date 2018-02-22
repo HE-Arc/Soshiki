@@ -1,4 +1,3 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import generic
 
@@ -10,7 +9,7 @@ def index(request):
     return render(request, 'SoshikiApp/index.html', context)
 
 
-class DashboardView(LoginRequiredMixin, generic.TemplateView):
+class DashboardView(generic.TemplateView):
     template_name = "SoshikiApp/dashboard.html"
 
     def get_context_data(self, **kwargs):
