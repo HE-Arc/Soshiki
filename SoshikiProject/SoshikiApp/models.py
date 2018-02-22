@@ -3,7 +3,7 @@ from django.db import models
 
 class Table(models.Model):
     """
-    Table for the tangan that will contain your
+    Table for the kanban that will contain your
     organisation for one project.
     """
     name = models.CharField(max_length=200)
@@ -35,7 +35,7 @@ class Card(models.Model):
     title = models.CharField(max_length=200)
     deadline = models.DateTimeField('Deadline')
     description = models.TextField()
-    file = models.URLField()
+    file = models.URLField(blank=True, null=True)
     position = models.IntegerField()
     list = models.ForeignKey(List, on_delete=models.CASCADE)
 
