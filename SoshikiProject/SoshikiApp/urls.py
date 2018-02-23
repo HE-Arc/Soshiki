@@ -1,4 +1,4 @@
-from django.urls import path,include
+from django.urls import path, include
 
 from .views import *
 
@@ -6,6 +6,10 @@ urlpatterns = [
     # Home Page and the Dashboard.
     path('', home_views.index, name='index'),
     path('dashboard', home_views.DashboardView.as_view(), name='dashboard'),
+
+    # Add Django site authentication urls (for login, logout, password management)
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/signup/', user_views.signup_view, name='signup'),
 
     # Routes for the CRUD of the Table model
     path('dashboard/tables', table_views.TablesListView.as_view(), name='tables-list'),
