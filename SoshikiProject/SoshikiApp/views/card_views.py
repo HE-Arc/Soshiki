@@ -15,7 +15,7 @@ class CardDetailView(generic.DetailView):
     model = Card
 
 
-class CardTableCreateView(generic.CreateView):
+class CardCreateView(generic.CreateView):
     model = Card
     fields = ['title', 'description','deadline','file','position','list_id']
     success_url = reverse_lazy('tables-list')

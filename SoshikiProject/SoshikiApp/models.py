@@ -1,13 +1,14 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class Table(models.Model):
     """
-    Table for the tangan that will contain your
+    Table for the kanban that will contain your
     organisation for one project.
     """
     name = models.CharField(max_length=200)
     favorite = models.BooleanField(default=False)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -77,16 +78,16 @@ class Label(models.Model):
         return self.name
 
 
-class Member(models.Model):
-    """
-    A member is a person that is invited to colaborate in this table.
-    """
-    name = models.CharField(max_length=200)
-    username = models.CharField(max_length=200)
-    table = models.ForeignKey(Table, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name + ' (' + self.username + ')'
+# class Member(models.Model):
+#     """
+#     A member is a person that is invited to colaborate in this table.
+#     """
+#     name = models.CharField(max_length=200)
+#     username = models.CharField(max_length=200)
+#     table = models.ForeignKey(Table, on_delete=models.CASCADE)
+#
+#     def __str__(self):
+#         return self.name + ' (' + self.username + ')'
 
 
 class Comment(models.Model):
@@ -95,7 +96,7 @@ class Comment(models.Model):
     """
     value = models.TextField()
     date = models.DateTimeField('published date')
-    creator = models.ForeignKey(Member, on_delete=models.CASCADE)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE)
     card = models.ForeignKey(Card, on_delete=models.CASCADE)
 
     def __str__(self):
