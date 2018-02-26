@@ -6,7 +6,6 @@ from ..models import Table
 
 class TablesListView(generic.ListView):
     model = Table
-
     def get_queryset(self):
         return Table.objects.all()
 
