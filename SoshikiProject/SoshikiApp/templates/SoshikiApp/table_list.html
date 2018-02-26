@@ -15,35 +15,26 @@
 
       <hr/>
 
-      <table class="table table-bordered mt-5">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Favorite</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-
       {% for table in table_list %}
 
-      <tr>
-        <td>
-          {{ table.id }}
-        </td>
-        <td>
-          {{ table.name }}
-        </td>
-        <td>
-          {{ table.favorite }}
-        </td>
-        <td>
-          <a href="{% url 'table-detail' table.pk %}" class="btn btn-primary btn-sm">Détails</a>
-          <a href="{% url 'table-update' table.pk %}" class="btn btn-success btn-sm">Update</a>
-          <a href="{% url 'table-delete' table.pk %}" class="btn btn-warning btn-sm">Delete</a>
-        </td>
-      </tr>
+        {% if table.favorite %}
+          <div class="card border-warning mb-3" style="max-width: 32rem;">
+            <div class="card-header">{{ table.name }}</div>
+            <div class="card-body text-warning">
+        {% else %}
+          <div class="card border-dark mb-3" style="max-width: 32rem;">
+            <div class="card-header">{{ table.name }}</div>
+            <div class="card-body text-dark">
+        {% endif %}
 
+              <td>
+                <a href="{% url 'table-detail' table.pk %}" class="btn btn-primary btn-sm">Details</a>
+                <a href="{% url 'table-update' table.pk %}" class="btn btn-success btn-sm">Update</a>
+                <a href="{% url 'table-delete' table.pk %}" class="btn btn-warning btn-sm">Delete</a>
+              </td>
+
+            </div>
+          </div>
       {% endfor %}
 
     </div>
