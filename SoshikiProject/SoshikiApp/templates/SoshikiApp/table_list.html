@@ -16,7 +16,6 @@
       <hr/>
 
       {% for table in table_list %}
-
         <a href="{% url 'table-detail' table.pk %}" style="color: black; text-decoration: none;">
         {% if table.favorite %}
           <div class="card border-warning mb-3 tables" style="max-width: 32rem;">

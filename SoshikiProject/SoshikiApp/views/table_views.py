@@ -2,6 +2,7 @@ from django.views import generic
 from django.urls import reverse_lazy
 
 from ..models import Table
+from ..models import List
 
 
 class TablesListView(generic.ListView):
@@ -12,6 +13,8 @@ class TablesListView(generic.ListView):
 
 class TableDetailView(generic.DetailView):
     model = Table
+    def get_queryset(self, *args, **kwargsout):
+        return Table.objects.filter()
 
 
 class TableCreateView(generic.CreateView):
