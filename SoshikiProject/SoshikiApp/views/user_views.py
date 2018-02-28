@@ -5,6 +5,10 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
+from django.views import generic
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
 
 from SoshikiApp.forms import SignupForm
 
@@ -25,9 +29,32 @@ def signup_view(request):
             to_email = form.cleaned_data.get('email')
             email = EmailMessage(mail_subject, message, to=[to_email])
             email.send()
-            # TODO: authenticate() ?
+            # Login et Redirection
             login(request, user)
             return HttpResponseRedirect('/')
     else:
         form = SignupForm()
     return render(request, 'Registration/signup.html', {'form': form})
+
+
+class UserDetailView(LoginRequiredMixin, generic.DetailView):
+    model = User
+    slug_field = 'username'
+    template_name = 'SoshikiApp/user_detail.html'
+
+
+class UserUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = User
+    slug_field = 'username'
+    fields = ['username', 'email']
+    template_name = 'SoshikiApp/user_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.object.username == request.user.username:
+            return super(UserUpdateView, self).dispatch(request, *args, **kwargs)
+        else:
+            return redirect('profile-detail', request.user.username)
+
+    def get_success_url(self):
+        return reverse_lazy('profile-detail', kwargs={'slug': self.request.user.username})

@@ -10,6 +10,8 @@ urlpatterns = [
     # Add Django site authentication urls (for login, logout, password management)
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', user_views.signup_view, name='signup'),
+    path('accounts/<slug>/', user_views.UserDetailView.as_view(), name='profile-detail'),
+    path('accounts/<slug>/update', user_views.UserUpdateView.as_view(), name='profile-update'),
 
     # Routes for the CRUD of the Table model
     path('dashboard/tables', table_views.TablesListView.as_view(), name='tables-list'),
