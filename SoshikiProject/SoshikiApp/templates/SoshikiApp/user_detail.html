@@ -1,0 +1,20 @@
+{% extends 'SoshikiApp/base.html' %}
+
+{% block title %}{{ user.username }} details{% endblock %}
+
+{% block content %}
+<div class="container allPages">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="display-4 mb-5">Profile details</h1>
+    </div>
+  </div>
+
+  <p> User : {{ user.username }}</p>
+  <p> Email : {{ user.email }}</p>
+  {% if request.user.is_authenticated and request.user.username == user.username %}
+  <a href="{% url 'profile-update' request.user.username %}">Update</a>
+  {% endif %}
+
+</div>
+{% endblock %}
