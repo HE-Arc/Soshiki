@@ -4,13 +4,6 @@ from django.urls import reverse_lazy
 from ..models import Card
 
 
-class CardsListView(generic.ListView):
-    model = Card
-
-    def get_queryset(self):
-        return Card.objects.all()
-
-
 class CardDetailView(generic.DetailView):
     model = Card
 

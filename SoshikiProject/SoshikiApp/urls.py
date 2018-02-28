@@ -26,7 +26,7 @@ urlpatterns = [
     path('dashboard/list/<pk>/update', list_views.ListUpdateView.as_view(), name='list-update'),
     path('dashboard/list/<pk>/delete', list_views.ListDeleteView.as_view(), name='list-delete'),
 
-    path('dashboard/tables', card_views.CardsListView.as_view(), name='card-list'),
+    path('dashboard/card', card_views.CardsListView.as_view(), name='card-list'),
     path('dashboard/card/<pk>/', card_views.CardDetailView.as_view(), name='card-detail'),
     path('dashboard/card/create', card_views.CardCreateView.as_view(), name='card-create'),
     path('dashboard/card/<pk>/update',card_views.CardUpdateView.as_view(), name='card-update'),

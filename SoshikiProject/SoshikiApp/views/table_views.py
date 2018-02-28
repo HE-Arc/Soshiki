@@ -2,27 +2,39 @@ from django.views import generic
 from django.urls import reverse_lazy
 
 from ..models import Table
+from ..models import List
 
 
 class TablesListView(generic.ListView):
     model = Table
-
     def get_queryset(self):
-        return Table.objects.all()
+        return Table.objects.filter(creator_id=self.request.user.id).all()
 
 
 class TableDetailView(generic.DetailView):
     model = Table
+    def get_queryset(self, *args, **kwargsout):
+        return Table.objects.filter()
 
 
 class TableCreateView(generic.CreateView):
     model = Table
+
+    def form_valid(self, form):
+        form.instance.creator_id = self.request.user.id
+        return super(TableCreateView, self).form_valid(form)
+
     fields = ['name', 'favorite']
     success_url = reverse_lazy('tables-list')
 
 
 class TableUpdateView(generic.UpdateView):
     model = Table
+
+    def form_valid(self, form):
+        form.instance.creator_id = self.request.user.id
+        return super(TableUpdateView, self).form_valid(form)
+
     fields = ['name', 'favorite']
     success_url = reverse_lazy('tables-list')
 

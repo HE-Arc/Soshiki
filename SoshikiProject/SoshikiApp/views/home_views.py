@@ -14,6 +14,6 @@ class DashboardView(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['tables'] = Table.objects.all()
-        context['table_favorite'] = Table.objects.filter(favorite=True).all()
+        context['tables'] = Table.objects.filter(creator_id=self.request.user.id).all()
+        context['table_favorite'] = Table.objects.filter(favorite=True, creator_id=self.request.user.id).all()
         return context

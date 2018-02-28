@@ -4,24 +4,21 @@
 
 {% block content %}
 <div class="container allPages">
+    <h1 class="display-4">{{ table.name}}</h1>
   <div class="row">
-    <div class="col-md-12">
-      <h1 class="display-4">{{table.name}}</h1>
-      <p><a href="{% url 'tables-list' %}">Retour</a></p>
-
-      <hr/>
-
-      <h3>Details</h3>
-
-      <div class="card-deck">
-        <div class="card text-white bg-success mb-3" style="max-width: 17rem;">
-          <div class="card-body">
-            <h5 class="card-title">Favorite</h5>
-            <p class="display-2">{{table.favorite}}</p>
-          </div>
+      {% for list in table.list_set.all %}
+        <div class="card col-md-4">
+            <h5 class="card-header">{{ list.name }}</h5>
+            <div class="card-body">
+                {% for card in list.card_set.all %}
+                <div class="card">
+                    {{card.title}}
+                </div>
+                {% endfor %}
+            </div>
         </div>
-      </div>
+      {% endfor %}
+
     </div>
-  </div>
 </div>
 {% endblock %}
