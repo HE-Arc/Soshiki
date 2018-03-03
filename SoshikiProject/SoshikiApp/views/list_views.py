@@ -1,10 +1,13 @@
 from django.views import generic
 from django.urls import reverse_lazy
+from django.shortcuts import redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from ..models import List
+from ..models import Table
 
 
-class ListCreateView(generic.CreateView):
+class ListCreateView(LoginRequiredMixin, generic.CreateView):
     model = List
     fields = ['name', 'position']
 
@@ -16,7 +19,7 @@ class ListCreateView(generic.CreateView):
         return reverse_lazy('table-detail', kwargs={'pk': self.kwargs["list"]})
 
 
-class ListUpdateView(generic.UpdateView):
+class ListUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = List
     fields = ['name', 'position']
 
@@ -28,8 +31,17 @@ class ListUpdateView(generic.UpdateView):
         return reverse_lazy('table-detail', kwargs={'pk': self.kwargs["list"]})
 
 
-class ListDeleteView(generic.DeleteView):
+class ListDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = List
+
+    def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        # TODO: Moyen de faire plus propre ?
+        table = Table.objects.get(id=self.object.table_id)
+        if table.creator_id == request.user.id:
+            return super(ListDeleteView, self).dispatch(request, *args, **kwargs)
+        else:
+            return redirect('tables-list')
 
     def get_success_url(self):
         return reverse_lazy('table-detail', kwargs={'pk': self.kwargs["list"]})
