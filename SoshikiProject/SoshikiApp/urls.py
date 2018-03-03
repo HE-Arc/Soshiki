@@ -20,9 +20,9 @@ urlpatterns = [
     path('tables/<pk>/update', table_views.TableUpdateView.as_view(), name='table-update'),
     path('tables/<pk>/delete', table_views.TableDeleteView.as_view(), name='table-delete'),
 
-    path('tables/<pk>/list/create', list_views.ListCreateView.as_view(), name='list-create'),
-    path('tables/<pk>/list/<pk2>/update', list_views.ListUpdateView.as_view(), name='list-update'),
-    path('tables/<pk>/list/<pk2>/delete', list_views.ListDeleteView.as_view(), name='list-delete'),
+    path('tables/<list>/list/create', list_views.ListCreateView.as_view(), name='list-create'),
+    path('tables/<list>/list/<pk>/update', list_views.ListUpdateView.as_view(), name='list-update'),
+    path('tables/<list>/list/<pk>/delete', list_views.ListDeleteView.as_view(), name='list-delete'),
 
     path('tables/<pk>/list/<pk2>/card/<pk3>/', card_views.CardDetailView.as_view(), name='card-detail'),
     path('tables/<pk>/list/<pk2>/card/create', card_views.CardCreateView.as_view(), name='card-create'),
