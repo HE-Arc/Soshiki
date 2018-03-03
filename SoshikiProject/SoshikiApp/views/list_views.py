@@ -12,11 +12,11 @@ class ListCreateView(LoginRequiredMixin, generic.CreateView):
     fields = ['name', 'position']
 
     def form_valid(self, form):
-        form.instance.table_id = self.kwargs["list"]
+        form.instance.table_id = self.kwargs["table"]
         return super(ListCreateView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('table-detail', kwargs={'pk': self.kwargs["list"]})
+        return reverse_lazy('table-detail', kwargs={'pk': self.kwargs["table"]})
 
 
 class ListUpdateView(LoginRequiredMixin, generic.UpdateView):
@@ -24,11 +24,11 @@ class ListUpdateView(LoginRequiredMixin, generic.UpdateView):
     fields = ['name', 'position']
 
     def form_valid(self, form):
-        form.instance.table_id = self.kwargs["list"]
+        form.instance.table_id = self.kwargs["table"]
         return super(ListUpdateView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('table-detail', kwargs={'pk': self.kwargs["list"]})
+        return reverse_lazy('table-detail', kwargs={'pk': self.kwargs["table"]})
 
 
 class ListDeleteView(LoginRequiredMixin, generic.DeleteView):
@@ -41,7 +41,7 @@ class ListDeleteView(LoginRequiredMixin, generic.DeleteView):
         if table.creator_id == request.user.id:
             return super(ListDeleteView, self).dispatch(request, *args, **kwargs)
         else:
-            return redirect('tables-list')
+            return reverse_lazy('table-detail', kwargs={'pk': self.kwargs["table"]})
 
     def get_success_url(self):
-        return reverse_lazy('table-detail', kwargs={'pk': self.kwargs["list"]})
+        return reverse_lazy('table-detail', kwargs={'pk': self.kwargs["table"]})

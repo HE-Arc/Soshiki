@@ -13,11 +13,11 @@ class CardCreateView(generic.CreateView):
     fields = ['title', 'description', 'deadline', 'file', 'position']
 
     def form_valid(self, form):
-        form.instance.list_id = self.kwargs["pk2"]
+        form.instance.list_id = self.kwargs["list"]
         return super(CardCreateView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('table-detail', kwargs={'pk': self.kwargs["pk"]})
+        return reverse_lazy('table-detail', kwargs={'pk': self.kwargs["table"]})
 
 
 class CardUpdateView(generic.UpdateView):
@@ -25,15 +25,15 @@ class CardUpdateView(generic.UpdateView):
     fields = ['title', 'description', 'deadline', 'file', 'position']
 
     def form_valid(self, form):
-        form.instance.list_id = self.kwargs["pk2"]
+        form.instance.list_id = self.kwargs["list"]
         return super(CardUpdateView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('table-detail', kwargs={'pk': self.kwargs["pk"]})
+        return reverse_lazy('table-detail', kwargs={'pk': self.kwargs["table"]})
 
 
 class CardDeleteView(generic.DeleteView):
     model = Card
 
     def get_success_url(self):
-        return reverse_lazy('table-detail', kwargs={'pk': self.kwargs["pk"]})
+        return reverse_lazy('table-detail', kwargs={'pk': self.kwargs["table"]})
