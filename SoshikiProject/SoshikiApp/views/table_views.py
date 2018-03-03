@@ -7,13 +7,15 @@ from ..models import List
 
 class TablesListView(generic.ListView):
     model = Table
+
     def get_queryset(self):
         return Table.objects.filter(creator_id=self.request.user.id).all()
 
 
 class TableDetailView(generic.DetailView):
     model = Table
-    def get_queryset(self, *args, **kwargsout):
+
+    def get_queryset(self):
         return Table.objects.filter()
 
 
