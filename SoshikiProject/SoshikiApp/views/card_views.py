@@ -2,6 +2,7 @@ from django.views import generic
 from django.urls import reverse_lazy
 
 from ..models import Card
+from ..forms import CardForm
 
 
 class CardDetailView(generic.DetailView):
@@ -10,7 +11,7 @@ class CardDetailView(generic.DetailView):
 
 class CardCreateView(generic.CreateView):
     model = Card
-    fields = ['title', 'description', 'deadline', 'file', 'position']
+    form_class = CardForm
 
     def form_valid(self, form):
         form.instance.list_id = self.kwargs["list"]
