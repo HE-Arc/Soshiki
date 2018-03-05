@@ -1,44 +1,53 @@
 from django.views import generic
 from django.urls import reverse_lazy
+from django.shortcuts import redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from ..models import Table
 from ..models import List
 
 
-class TablesListView(generic.ListView):
+class TablesListView(LoginRequiredMixin, generic.ListView):
     model = Table
+
     def get_queryset(self):
         return Table.objects.filter(creator_id=self.request.user.id).all()
 
 
-class TableDetailView(generic.DetailView):
+class TableDetailView(LoginRequiredMixin, generic.DetailView):
     model = Table
-    def get_queryset(self, *args, **kwargsout):
-        return Table.objects.filter()
+
+    def get_queryset(self):
+        return Table.objects.filter(creator_id=self.request.user.id)
 
 
-class TableCreateView(generic.CreateView):
+class TableCreateView(LoginRequiredMixin, generic.CreateView):
     model = Table
+    fields = ['name', 'favorite']
+    success_url = reverse_lazy('tables-list')
 
     def form_valid(self, form):
         form.instance.creator_id = self.request.user.id
         return super(TableCreateView, self).form_valid(form)
 
+
+class TableUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Table
     fields = ['name', 'favorite']
     success_url = reverse_lazy('tables-list')
-
-
-class TableUpdateView(generic.UpdateView):
-    model = Table
 
     def form_valid(self, form):
         form.instance.creator_id = self.request.user.id
         return super(TableUpdateView, self).form_valid(form)
 
-    fields = ['name', 'favorite']
-    success_url = reverse_lazy('tables-list')
 
-
-class TableDeleteView(generic.DeleteView):
+class TableDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Table
     success_url = reverse_lazy('tables-list')
+
+    def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.object.creator_id == request.user.id:
+            return super(TableDeleteView, self).dispatch(request, *args, **kwargs)
+        else:
+            return redirect('tables-list')
