@@ -1,7 +1,7 @@
 from django.views import generic
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from ..models import Table
 from ..models import List
@@ -41,13 +41,10 @@ class TableUpdateView(LoginRequiredMixin, generic.UpdateView):
         return super(TableUpdateView, self).form_valid(form)
 
 
-class TableDeleteView(LoginRequiredMixin, generic.DeleteView):
+class TableDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     model = Table
     success_url = reverse_lazy('tables-list')
 
-    def dispatch(self, request, *args, **kwargs):
+    def test_func(self):
         self.object = self.get_object()
-        if self.object.creator_id == request.user.id:
-            return super(TableDeleteView, self).dispatch(request, *args, **kwargs)
-        else:
-            return redirect('tables-list')
+        return self.object.creator_id == self.request.user.id
