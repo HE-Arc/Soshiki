@@ -88,18 +88,6 @@ class Label(models.Model):
         return self.name
 
 
-# class Member(models.Model):
-#     """
-#     A member is a person that is invited to colaborate in this table.
-#     """
-#     name = models.CharField(max_length=200)
-#     username = models.CharField(max_length=200)
-#     table = models.ForeignKey(Table, on_delete=models.CASCADE)
-#
-#     def __str__(self):
-#         return self.name + ' (' + self.username + ')'
-
-
 class Comment(models.Model):
     """
     A card can contain several comments by the members of the table.

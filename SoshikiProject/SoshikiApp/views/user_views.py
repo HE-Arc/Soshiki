@@ -7,8 +7,7 @@ from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from django.views import generic
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import redirect
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from SoshikiApp.forms import SignupForm
 
@@ -37,24 +36,25 @@ def signup_view(request):
     return render(request, 'Registration/signup.html', {'form': form})
 
 
-class UserDetailView(LoginRequiredMixin, generic.DetailView):
+class UserDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView):
     model = User
     slug_field = 'username'
     template_name = 'SoshikiApp/user_detail.html'
 
+    def test_func(self):
+        self.object = self.get_object()
+        return self.object.username == self.request.user.username
 
-class UserUpdateView(LoginRequiredMixin, generic.UpdateView):
+
+class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = User
     slug_field = 'username'
     fields = ['username', 'email']
     template_name = 'SoshikiApp/user_form.html'
 
-    def dispatch(self, request, *args, **kwargs):
+    def test_func(self):
         self.object = self.get_object()
-        if self.object.username == request.user.username:
-            return super(UserUpdateView, self).dispatch(request, *args, **kwargs)
-        else:
-            return redirect('profile-detail', request.user.username)
+        return self.object.username == self.request.user.username
 
     def get_success_url(self):
         return reverse_lazy('profile-detail', kwargs={'slug': self.request.user.username})
