@@ -1,56 +1,20 @@
 {% extends 'SoshikiApp/base.html' %}
 
-{% block title %}Table details{% endblock %}
+{% block title %}Card details{% endblock %}
 
 {% block content %}
 <div class="container allPages">
-
-    <div class="row">
-        <div class="col-md-4">
-            <h1 class="display-4">{{ table.name}}</h1>
-        </div>
-        <div class="col-md-4" style="padding-top: 25px">
-            <a href="{% url 'table-update' table.pk %}" class="btn btn-warning btn-sm">Update the table</a>
-            <a href="{% url 'table-delete' table.pk %}" class="btn btn-danger btn-sm">Delete the table</a>
-        </div>
+    <h1>{{card.title}}</h1>
+    <h3>Description</h3>
+    {{card.description}}
+    <h3>Deadline</h3>
+    {{card.get_deadline_info}}
+    <div class="card {{ card.get_deadline_info | safe }} w-25">
+        {{card.deadline|date:"d F Y"}}
     </div>
+    <h3>Fichiers</h3>
+    {{card.file}}
+    <h3>Commentaires</h3>
 
-    <p class="lead text-muted">A list of Tables.</p>
-    <a href="{% url 'list-create' table.pk%}" class="btn btn-success btn-sm">Add a list</a>
-    <hr/>
-    <div class="row">
-      {% for list in table.list_set.all %}
-        <div class="card col-md-4">
-            <div class="row">
-                <div class="col-md-8">
-                    <h5 class="card-header">{{ list.name }}</h5>
-                </div>
-                <div class="col-md-4">
-                    <div class="row">
-                        <div class="col-md4">
-                            <a href="{% url 'list-update' table.pk list.pk%}" class="btn btn-warning btn-sm">Update</a>
-                        </div>
-                        <div class="col-md4">
-                            <a href="{% url 'list-delete' table.pk list.pk%}" class="btn btn-danger btn-sm">Delete</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                {% for card in list.card_set.all %}
-                <div class="card list-card">
-                    <a href="{% url 'card-detail' card.id %}">{{card.title}}</a>
-
-                </div>
-                {% endfor %}
-                <a href="{% url 'card-create' table.pk list.pk%}" style="color: black; text-decoration: none;">
-                    <div class="card add_task" style="background: #e4eded">
-                        <p>Add a task...</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-      {% endfor %}
-    </div>
 </div>
 {% endblock %}

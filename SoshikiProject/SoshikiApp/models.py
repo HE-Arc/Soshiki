@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+import datetime
 
 class Table(models.Model):
     """
@@ -43,6 +43,15 @@ class Card(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_deadline_info(self):
+        if self.deadline.date() > datetime.datetime.now().date():
+            if self.deadline.date() < datetime.date.today() + datetime.timedelta(days=1):
+                return "bg-danger"
+            else:
+                return "bg-success"
+        else:
+            return "bg-warning"
 
 
 class CheckList(models.Model):

@@ -38,8 +38,9 @@
             </div>
             <div class="card-body">
                 {% for card in list.card_set.all %}
-                <div class="card">
-                    {{card.title}}
+                <div class="card list-card">
+                    <a href="{% url 'card-detail' table.pk list.pk card.id %}">{{card.title}}</a>
+
                 </div>
                 {% endfor %}
                 <a href="{% url 'card-create' table.pk list.pk%}" style="color: black; text-decoration: none;">
