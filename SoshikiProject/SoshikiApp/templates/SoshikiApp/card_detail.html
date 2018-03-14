@@ -16,6 +16,11 @@
     <h3><i class="fa fa-file"></i>Fichiers</h3>
     {{card.file}}
     <h3><i class="fa fa-comments"></i>Commentaires</h3>
+    {% for comment in card.comment_set.all %}
+        <div>
+            <a>{{comment.value}}</a>
+        </div>
+    {% endfor %}
 
 </div>
 {% endblock %}

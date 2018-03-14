@@ -12,7 +12,7 @@
    "model": "SoshikiApp.table",
    "pk": 2,
    "fields": {
-      "name": "Tets 2",
+      "name": "Test 2",
       "favorite": true,
       "creator_id": 1
    }
@@ -99,6 +99,52 @@
       "file":null,
       "position" : 1,
       "list_id" : 2
+   }
+},
+{
+   "model": "auth.user",
+   "pk": 1,
+   "fields": {
+      "password":"pbkdf2_sha256$100000$sbxc7WfXfi9Q$V2/w6LtPuiIM22BoEVc4uzicm6BZ7cpBMQ2N2YZKPy4=",
+      "last_login":"2018-01-19 07:14:07",
+      "is_superuser": 0,
+      "username" : "testUser",
+      "first_name" : "",
+      "last_name" : "",
+      "email" : "test@test.com",
+      "is_staff" : 0,
+      "is_active" : 1,
+      "date_joined" : "2018-01-19 03:14:07"
+   }
+},
+{
+   "model": "SoshikiApp.comment",
+   "pk": 1,
+   "fields": {
+      "value":"Test comment",
+      "date":"2018-03-13 07:14:07",
+      "card_id": 1,
+      "creator_id" : 1
+   }
+},
+{
+   "model": "SoshikiApp.comment",
+   "pk": 2,
+   "fields": {
+      "value":"Test comment number 2",
+      "date":"2018-03-14 08:17:12",
+      "card_id": 1,
+      "creator_id" : 1
+   }
+},
+{
+   "model": "SoshikiApp.comment",
+   "pk": 3,
+   "fields": {
+      "value":"Test comment number 3",
+      "date":"2018-03-13 07:14:07",
+      "card_id": 2,
+      "creator_id" : 1
    }
 }
 ]
