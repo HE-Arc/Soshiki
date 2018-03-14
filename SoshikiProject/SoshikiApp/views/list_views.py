@@ -1,15 +1,15 @@
 from django.views import generic
 from django.urls import reverse_lazy
-from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from ..models import List
 from ..models import Table
+from ..forms import ListForm
 
 
 class ListCreateView(LoginRequiredMixin, generic.CreateView):
     model = List
-    fields = ['name', 'position']
+    from_class = ListForm
 
     def form_valid(self, form):
         form.instance.table_id = self.kwargs["table"]
@@ -21,7 +21,7 @@ class ListCreateView(LoginRequiredMixin, generic.CreateView):
 
 class ListUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = List
-    fields = ['name', 'position']
+    from_class = ListForm
 
     def form_valid(self, form):
         form.instance.table_id = self.kwargs["table"]

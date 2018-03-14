@@ -23,7 +23,7 @@ class CardCreateView(generic.CreateView):
 
 class CardUpdateView(generic.UpdateView):
     model = Card
-    fields = ['title', 'description', 'deadline', 'file', 'position']
+    form_class = CardForm
 
     def form_valid(self, form):
         form.instance.list_id = self.kwargs["list"]

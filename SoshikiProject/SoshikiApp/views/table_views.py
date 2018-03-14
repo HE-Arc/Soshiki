@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from ..models import Table
-from ..models import List
+from ..forms import TableForm
 
 
 class TablesListView(LoginRequiredMixin, generic.ListView):
@@ -23,7 +23,7 @@ class TableDetailView(LoginRequiredMixin, generic.DetailView):
 
 class TableCreateView(LoginRequiredMixin, generic.CreateView):
     model = Table
-    fields = ['name', 'favorite']
+    form_class = TableForm
     success_url = reverse_lazy('tables-list')
 
     def form_valid(self, form):
@@ -33,7 +33,7 @@ class TableCreateView(LoginRequiredMixin, generic.CreateView):
 
 class TableUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Table
-    fields = ['name', 'favorite']
+    form_class = TableForm
     success_url = reverse_lazy('tables-list')
 
     def form_valid(self, form):
