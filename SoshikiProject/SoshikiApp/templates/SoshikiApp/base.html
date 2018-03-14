@@ -6,6 +6,8 @@
     {% load static %}
     {% bootstrap_css %}
     {% bootstrap_javascript jquery='full' %}
+    {% load wagtailfontawesome %}
+    {% fontawesome_css %}
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,6 +22,8 @@
     <link href="{% static 'SoshikiApp/css/homePage.css' %}" rel="stylesheet">
     <!-- Custom sytles for the Dashboard -->
     <link href="{% static 'SoshikiApp/css/allPagesConfig.css' %}" rel="stylesheet">
+     <!-- Custom sytles for the table detail -->
+    <link href="{% static 'SoshikiApp/css/tableDetail.css' %}" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="{% static 'SoshikiApp/css/bootstrap-datepicker.standalone.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'SoshikiApp/css/clockpicker.css' %}" >
@@ -45,11 +49,12 @@
             {% if request.user.is_authenticated %}
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                    <a class="nav-link" href="{% url 'dashboard' %}"><i class="fa fa-american-sign-language-interpreting"></i> Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'tables-list' %}">Tables</a>
+                    <a class="nav-link" href="{% url 'tables-list' %}"><i class="fa fa-table"></i> Tables</a>
                 </li>
+
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">

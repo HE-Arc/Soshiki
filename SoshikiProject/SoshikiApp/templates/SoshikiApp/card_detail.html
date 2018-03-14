@@ -1,0 +1,26 @@
+{% extends 'SoshikiApp/base.html' %}
+
+{% block title %}Card details{% endblock %}
+
+{% block content %}
+<div class="container allPages">
+    <h1><i class="fa fa-address-card"></i> {{card.title}}</h1>
+
+    <h3><i class="fa fa-align-left"></i>Description</h3>
+    {{card.description}}
+    <h3><i class="fa fa-calendar"></i>Deadline</h3>
+    {{card.get_deadline_info}}
+    <div class="card {{ card.get_deadline_info | safe }} w-25">
+        {{card.deadline|date:"d F Y"}}
+    </div>
+    <h3><i class="fa fa-file"></i>Fichiers</h3>
+    {{card.file}}
+    <h3><i class="fa fa-comments"></i>Commentaires</h3>
+    {% for comment in card.comment_set.all %}
+        <div>
+            <a>{{comment.value}}</a>
+        </div>
+    {% endfor %}
+
+</div>
+{% endblock %}
