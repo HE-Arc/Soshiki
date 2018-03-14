@@ -4,17 +4,18 @@
 
 {% block content %}
 <div class="container allPages">
-    <h1>{{card.title}}</h1>
-    <h3>Description</h3>
+    <h1><i class="fa fa-address-card"></i> {{card.title}}</h1>
+
+    <h3><i class="fa fa-align-left"></i>Description</h3>
     {{card.description}}
-    <h3>Deadline</h3>
+    <h3><i class="fa fa-calendar"></i>Deadline</h3>
     {{card.get_deadline_info}}
     <div class="card {{ card.get_deadline_info | safe }} w-25">
         {{card.deadline|date:"d F Y"}}
     </div>
-    <h3>Fichiers</h3>
+    <h3><i class="fa fa-file"></i>Fichiers</h3>
     {{card.file}}
-    <h3>Commentaires</h3>
+    <h3><i class="fa fa-comments"></i>Commentaires</h3>
 
 </div>
 {% endblock %}
