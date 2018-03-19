@@ -9,10 +9,19 @@ $(document).ready(function(){
     $('.tables').click(function () {
         window.location = $(this).parentElement().attr("href");
         return false;
-    })
+    });
     //Make the add task clickable
     $('.add_task').click(function () {
         window.location = $(this).parentElement().attr("href");
         return false;
-    })
+    });
+    //Manage the date and clock pickers
+    $('.datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+        startDate: '+0d'
+    });
+    $('.clockpicker').clockpicker({
+        placement: 'top',
+        autoclose: true
+    });
 });

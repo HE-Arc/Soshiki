@@ -18,6 +18,7 @@ class CardDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView
         table = Table.objects.get(id=l.table_id)
         return table.creator_id == self.request.user.id
 
+
 class CardCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
     model = Card
     form_class = CardForm
@@ -37,7 +38,7 @@ class CardCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView
 
 class CardUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = Card
-    fields = ['title', 'description', 'deadline', 'file', 'position']
+    form_class = CardForm
 
     def test_func(self):
         self.object = self.get_object()

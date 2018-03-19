@@ -4,11 +4,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from ..models import List
 from ..models import Table
+from ..forms import ListForm
 
 
 class ListCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
     model = List
-    fields = ['name', 'position']
+    form_class = ListForm
 
     def test_func(self):
         table_fk = self.kwargs["table"]
@@ -25,7 +26,7 @@ class ListCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView
 
 class ListUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = List
-    fields = ['name', 'position']
+    form_class = ListForm
 
     def test_func(self):
         self.object = self.get_object()
