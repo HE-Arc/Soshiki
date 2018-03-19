@@ -5,3 +5,28 @@
 .list-card:hover {
     background: #c9c9c9;
 }
+a {
+    color: #595959;
+}
+
+a:hover {
+    color: #595959;
+    text-decoration: none;
+    background-color: #b3b3b3;
+}
+
+a h1:hover {
+    color: #999999;
+}
+
+.fa-edit:hover {
+    background-color: #e58900;
+}
+
+.fa-remove:hover {
+    background-color: #cc2e30;
+}
+
+.btn-default:hover{
+    background-color: #90cc89;
+}

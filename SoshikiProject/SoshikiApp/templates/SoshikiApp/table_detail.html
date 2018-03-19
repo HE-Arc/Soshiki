@@ -7,40 +7,25 @@
 
     <div class="row">
         <div class="col-md-4">
-            <h1 class="display-4">{{ table.name}}</h1>
-        </div>
-        <div class="col-md-4" style="padding-top: 25px">
-            <a href="{% url 'table-update' table.pk %}" class="btn btn-warning btn-sm">Update the table</a>
-            <a href="{% url 'table-delete' table.pk %}" class="btn btn-danger btn-sm">Delete the table</a>
+            <a href="{% url 'table-update' table.pk %}"><h1 class="display-4">{{ table.name}}</h1></a>
         </div>
     </div>
 
-    <p class="lead text-muted">A list of Tables.</p>
-    <a href="{% url 'list-create' table.pk%}" class="btn btn-success btn-sm">Add a list</a>
+    <p class="lead text-muted">Manage your project {{ table.name}}.</p>
+    <a href="{% url 'list-create' table.pk%}" class="btn btn-default" style="width:100%">Add a list</a>
     <hr/>
-    <div class="row">
+    <div class="card-columns">
       {% for list in table.list_set.all|dictsort:"position" %}
-        <div id="{{ list.id }}" class="card col-md-4">
-            <div class="row">
-                <div class="col-md-8">
-                    <h5 class="card-header">{{ list.name }}</h5>
-                </div>
-                <div class="col-md-4">
-                    <div class="row">
-                        <div class="col-md4">
-                            <a href="{% url 'list-update' table.pk list.pk%}" class="btn btn-warning btn-sm">Update</a>
-                        </div>
-                        <div class="col-md4">
-                            <a href="{% url 'list-delete' table.pk list.pk%}" class="btn btn-danger btn-sm">Delete</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div id="{{ list.id }}" class="card">
+            <h5 class="card-header">
+                {{ list.name }}
+                <a href="{% url 'list-update' table.pk list.pk%}" class="btn fa fa-edit" ></a>
+                <a href="{% url 'list-delete' table.pk list.pk%}" class="btn fa fa-remove" style="margin-left: -5%"></a>
+            </h5>
             <div class="card-body">
                 {% for card in list.card_set.all|dictsort:"position" %}
                 <div id="{{ card.id }}" class="card list-card">
                     <a href="{% url 'card-detail' table.pk list.pk card.id %}">{{card.title}}</a>
-
                 </div>
                 {% endfor %}
                 <a href="{% url 'card-create' table.pk list.pk%}" style="color: black; text-decoration: none;">
