@@ -188,5 +188,10 @@ fabric.properties
 # Sonarlint plugin
 .idea/sonarlint
 
+# Deployment with Ruby and Capistrano
+Gemfile
+Gemfile.lock
+Capfile
+config/
 
 # End of https://www.gitignore.io/api/pycharm
