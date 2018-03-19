@@ -7,22 +7,25 @@
 
     <div class="row">
         <div class="col-md-4">
-            <a href="{% url 'table-update' table.pk %}" style="text-decoration: none"><h1 class="display-4">{{ table.name}}</h1></a>
+            <a href="{% url 'table-update' table.pk %}"><h1 class="display-4">{{ table.name}}</h1></a>
         </div>
     </div>
 
     <p class="lead text-muted">Manage your project {{ table.name}}.</p>
-    <a href="{% url 'list-create' table.pk%}" class="btn btn-success btn-sm">Add a list</a>
+    <a href="{% url 'list-create' table.pk%}" class="btn btn-default" style="width:100%">Add a list</a>
     <hr/>
     <div class="card-columns">
       {% for list in table.list_set.all %}
         <div class="card">
-            <h5 class="card-header">{{ list.name }}</h5>
+            <h5 class="card-header">
+                {{ list.name }}
+                <a href="{% url 'list-update' table.pk list.pk%}" class="btn fa fa-edit" ></a>
+                <a href="{% url 'list-delete' table.pk list.pk%}" class="btn fa fa-remove" style="margin-left: -5%"></a>
+            </h5>
             <div class="card-body">
                 {% for card in list.card_set.all %}
                 <div class="card list-card">
                     <a href="{% url 'card-detail' table.pk list.pk card.id %}">{{card.title}}</a>
-
                 </div>
                 {% endfor %}
                 <a href="{% url 'card-create' table.pk list.pk%}" style="color: black; text-decoration: none;">
@@ -30,8 +33,6 @@
                         <p>Add a task...</p>
                     </div>
                 </a>
-                <a href="{% url 'list-update' table.pk list.pk%}" class="btn btn-warning btn-sm">Update</a>
-                <a href="{% url 'list-delete' table.pk list.pk%}" class="btn btn-danger btn-sm">Delete</a>
             </div>
         </div>
       {% endfor %}

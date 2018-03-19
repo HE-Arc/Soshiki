@@ -5,7 +5,6 @@ from .views import *
 urlpatterns = [
     # Home Page and the Dashboard.
     path('', home_views.index, name='index'),
-    path('dashboard', home_views.DashboardView.as_view(), name='dashboard'),
 
     # Add Django site authentication urls (for login, logout, password management)
     path('accounts/', include('django.contrib.auth.urls')),
