@@ -21,7 +21,7 @@ def signup_view(request):
             # Envoi d'un petit message de bienvenue
             current_site = get_current_site(request)
             mail_subject = 'Welcome on Soshiki!'
-            message = render_to_string('Registration/account_confirm_email.html', {
+            message = render_to_string('registration/account_confirm_email.html', {
                 'user': user,
                 'domain': current_site.domain,
             })
@@ -33,7 +33,7 @@ def signup_view(request):
             return HttpResponseRedirect('/')
     else:
         form = SignupForm()
-    return render(request, 'Registration/signup.html', {'form': form})
+    return render(request, 'registration/signup.html', {'form': form})
 
 
 class UserDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView):

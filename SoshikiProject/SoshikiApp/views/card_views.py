@@ -30,6 +30,8 @@ class CardCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView
 
     def form_valid(self, form):
         form.instance.list_id = self.kwargs["list"]
+        # Getting maximum position of existing positions
+        form.instance.position = Card.objects.all().filter(list_id=self.kwargs["list"]).order_by("-position")[0].position + 1
         return super(CardCreateView, self).form_valid(form)
 
     def get_success_url(self):

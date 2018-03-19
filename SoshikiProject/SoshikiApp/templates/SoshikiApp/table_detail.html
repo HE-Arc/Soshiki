@@ -19,8 +19,8 @@
     <a href="{% url 'list-create' table.pk%}" class="btn btn-success btn-sm">Add a list</a>
     <hr/>
     <div class="row">
-      {% for list in table.list_set.all %}
-        <div class="card col-md-4">
+      {% for list in table.list_set.all|dictsort:"position" %}
+        <div id="{{ list.id }}" class="card col-md-4">
             <div class="row">
                 <div class="col-md-8">
                     <h5 class="card-header">{{ list.name }}</h5>
@@ -37,8 +37,8 @@
                 </div>
             </div>
             <div class="card-body">
-                {% for card in list.card_set.all %}
-                <div class="card list-card">
+                {% for card in list.card_set.all|dictsort:"position" %}
+                <div id="{{ card.id }}" class="card list-card">
                     <a href="{% url 'card-detail' table.pk list.pk card.id %}">{{card.title}}</a>
 
                 </div>

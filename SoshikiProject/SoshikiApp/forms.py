@@ -19,7 +19,6 @@ class CardForm(forms.ModelForm):
     description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description'}))
     deadline = forms.SplitDateTimeField(input_time_formats=['%H:%M'], input_date_formats=['%d/%m/%Y'])
     file = forms.FileField(required=False, widget=forms.FileInput(attrs={'class': 'form-control'}))
-    position = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '0'}))
 
     def __init__(self, *args, **kwargs):
         super(CardForm, self).__init__(*args, **kwargs)
@@ -29,17 +28,16 @@ class CardForm(forms.ModelForm):
 
     class Meta:
         model = Card
-        fields = ['title', 'description', 'deadline', 'file', 'position']
+        fields = ['title', 'description', 'deadline', 'file']
 
 
 class ListForm(forms.ModelForm):
 
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}))
-    position = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '0'}))
 
     class Meta:
         model = List
-        fields = ['name', 'position']
+        fields = ['name']
 
 
 class TableForm(forms.ModelForm):
