@@ -7,15 +7,11 @@
 
     <div class="row">
         <div class="col-md-4">
-            <h1 class="display-4">{{ table.name}}</h1>
-        </div>
-        <div class="col-md-4" style="padding-top: 25px">
-            <a href="{% url 'table-update' table.pk %}" class="btn btn-warning btn-sm">Update the table</a>
-            <a href="{% url 'table-delete' table.pk %}" class="btn btn-danger btn-sm">Delete the table</a>
+            <a href="{% url 'table-update' table.pk %}" style="text-decoration: none"><h1 class="display-4">{{ table.name}}</h1></a>
         </div>
     </div>
 
-    <p class="lead text-muted">A list of Tables.</p>
+    <p class="lead text-muted">Manage your project {{ table.name}}.</p>
     <a href="{% url 'list-create' table.pk%}" class="btn btn-success btn-sm">Add a list</a>
     <hr/>
     <div class="row">
