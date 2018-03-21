@@ -1,3 +1,21 @@
 .allPages{
     padding-top: 80px;
 }
+
+/* Prevent the text contents of draggable elements from being selectable. */
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+}
+.draggable-card {
+  cursor: move;
+}
+
+.draggable-card.hover {
+  border: 1px dashed #111;
+}

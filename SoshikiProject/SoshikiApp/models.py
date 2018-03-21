@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import datetime
+from django.utils import timezone
 
 
 class Table(models.Model):
@@ -47,13 +48,13 @@ class Card(models.Model):
         return self.title
 
     def get_deadline_info(self):
-        if self.deadline.date() > datetime.datetime.now().date():
-            if self.deadline.date() < datetime.date.today() + datetime.timedelta(days=1):
-                return "bg-danger"
+        if self.deadline >= timezone.now() :
+            if self.deadline < timezone.now() + datetime.timedelta(days=1):
+                return "bg-warning"
             else:
                 return "bg-success"
         else:
-            return "bg-warning"
+            return "bg-danger"
 
 
 class CheckList(models.Model):

@@ -9,9 +9,8 @@
     <h3><i class="fa fa-align-left"></i>Description</h3>
     {{card.description}}
     <h3><i class="fa fa-calendar"></i>Deadline</h3>
-    {{card.get_deadline_info}}
     <div class="card {{ card.get_deadline_info | safe }} w-25">
-        {{card.deadline|date:"d F Y"}}
+        {{card.deadline|date:"d F Y H:i"}}
     </div>
     <h3><i class="fa fa-file"></i>Fichiers</h3>
     {{card.file}}
