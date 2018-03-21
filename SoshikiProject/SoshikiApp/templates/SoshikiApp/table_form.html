@@ -9,8 +9,8 @@
             <h1>Create/Update a table</h1>
         </div>
         {% if form.instance.id %}
-            <div class="col-md-4" style="padding-top: 10px">
-                <a href="{% url 'table-delete' table.pk %}" class="btn btn-danger btn-sm">Delete the table</a>
+            <div class="col-md-4">
+                <a href="{% url 'table-delete' table.pk %}" class="btn fa fa-trash"></a>
             </div>
         {% endif %}
     </div>

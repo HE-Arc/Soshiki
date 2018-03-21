@@ -1,0 +1,23 @@
+a .card_link{
+    color: #000000;
+    text-decoration: none;
+}
+
+.card{
+    max-width: 32rem;
+}
+
+.fa-trash:hover {
+    background-color: #cc2e30;
+}
+
+.fa-trash{
+    margin-left: -55%;
+    margin-top: 1.5%;
+    font-size: 25px;
+}
+
+.fa-star{
+    font-size: 25px;
+    color: #FFC300;
+}

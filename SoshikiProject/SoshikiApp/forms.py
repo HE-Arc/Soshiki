@@ -34,6 +34,8 @@ class CardForm(forms.ModelForm):
 class ListForm(forms.ModelForm):
 
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}))
+    position = forms.IntegerField(required=False, widget=forms.NumberInput(attrs={'class': 'form-control',
+                                                                                  'placeholder': '0'}))
 
     class Meta:
         model = List
@@ -43,8 +45,9 @@ class ListForm(forms.ModelForm):
 class TableForm(forms.ModelForm):
 
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}))
-    favorite = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class': 'form-control'}))
+    favorite = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class': 'form-control'}))
+    background = forms.FileField(required=False, widget=forms.FileInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = Table
-        fields = ['name', 'favorite']
+        fields = ['name','background', 'favorite']

@@ -6,31 +6,50 @@
 
 <div class="container allPages">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
 
       <h1 class="display-4">Soshiki's Tables</h1>
       <p class="lead text-muted">A list of Tables.</p>
 
-      <a href="{% url 'table-create' %}" class="btn btn-success btn-sm">Add a table</a>
+      <a href="{% url 'table-create' %}" class="btn btn-default btn-sm">Add a table</a>
 
       <hr/>
-
-      {% for table in table_list %}
-        <a href="{% url 'table-detail' table.pk %}" class="card_link" style="color: black; text-decoration: none;">
-        {% if table.favorite %}
-          <div class="card border-warning mb-3 tables" style="max-width: 32rem;">
-            <div class="card-header">{{ table.name }}</div>
-            <div class="card-body text-warning">
-        {% else %}
-          <div class="card border-dark mb-3" style="max-width: 32rem;">
-            <div class="card-header">{{ table.name }}</div>
-            <div class="card-body text-dark">
-        {% endif %}
-            </div>
+      <div class="row">
+          <div class="col-md-6 non-favorite">
+              <h3>Your Tables</h3>
+              {% for table in table_list %}
+                {% if not table.favorite %}
+                    <a href="{% url 'table-detail' table.pk %}" class="card_link">
+                        <div class="card text-white bg-secondary mb-3 tables">
+                            <div class="card-header">{{ table.name }}</div>
+                            <div class="card-body text-dark"></div>
+                        </div>
+                    </a>
+                {% endif %}
+              {% endfor %}
           </div>
-        </a>
-      {% endfor %}
-
+          <div class="col-md-6 favorite">
+              <h3>Your favorite Tables</h3>
+              {% for table in table_list %}
+                {% if table.favorite %}
+                    <a href="{% url 'table-detail' table.pk %}" class="card_link">
+                        <div class="card bg-light mb-3 border-warning mb-3">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-md-11">
+                                        {{ table.name }}
+                                    </div>
+                                    <div class="col-md-1 fa fa-star">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body text-warning"></div>
+                        </div>
+                    </a>
+                {% endif %}
+              {% endfor %}
+          </div>
+      </div>
     </div>
   </div>
 </div>
