@@ -1,8 +1,10 @@
 from django.views import generic
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
+from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
+from ..models import List
 from ..models import Table
 from ..forms import TableForm
 
@@ -48,3 +50,13 @@ class TableDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteVie
     def test_func(self):
         self.object = self.get_object()
         return self.object.creator_id == self.request.user.id
+
+def reorder_lists(request):
+    # TODO: Quid de la sécurité
+    if request.is_ajax():
+        ids = request.POST.getlist("arrayIDs[]")
+        position = 1
+        for id in ids:
+            List.objects.filter(id=id).update(position=position)
+            position += 1
+        return HttpResponse("OK")

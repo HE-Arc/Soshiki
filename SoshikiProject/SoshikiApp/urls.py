@@ -15,6 +15,7 @@ urlpatterns = [
     # Routes for the CRUD of the Table model
     path('tables', table_views.TablesListView.as_view(), name='tables-list'),
     path('tables/<pk>/', table_views.TableDetailView.as_view(), name='table-detail'),
+    path('tables/reorder-lists', table_views.reorder_lists, name="table-reorder-lists"),
     path('tables/create', table_views.TableCreateView.as_view(), name='table-create'),
     path('tables/<pk>/update', table_views.TableUpdateView.as_view(), name='table-update'),
     path('tables/<pk>/delete', table_views.TableDeleteView.as_view(), name='table-delete'),
