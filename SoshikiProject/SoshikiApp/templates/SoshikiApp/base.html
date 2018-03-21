@@ -27,12 +27,6 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'SoshikiApp/css/bootstrap-datepicker.standalone.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'SoshikiApp/css/clockpicker.css' %}" >
-
-    <!-- JavaScript file that smooth the scroll when you press on a local link -->
-    <script src="{% static 'SoshikiApp/js/GraphicsTools.js' %}" type="text/javascript"></script>
-
-    <script src="{% static 'SoshikiApp/js/bootstrap-datepicker.min.js' %}" type="text/javascript"></script>
-    <script src="{% static 'SoshikiApp/js/clockpicker.js' %}" type="text/javascript"></script>
 </head>
 
 <body>
@@ -76,6 +70,12 @@
 </nav>
   {% block content %}{% endblock %}
 </body>
+<!-- JavaScript file that smooth the scroll when you press on a local link -->
+<script src="{% static 'SoshikiApp/js/GraphicsTools.js' %}" type="text/javascript"></script>
+
+<script src="{% static 'SoshikiApp/js/bootstrap-datepicker.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'SoshikiApp/js/clockpicker.js' %}" type="text/javascript"></script>
+<script src="{% static 'SoshikiApp/js/drag.js' %}" type="text/javascript"></script>
 <!-- Footer -->
 <!-- <footer class="py-5 bg-black">
     <div class="container">

@@ -16,8 +16,8 @@
     <hr/>
     <div class="card-columns">
       {% for list in table.list_set.all|dictsort:"position" %}
-        <div id="{{ list.id }}" class="card">
-            <h5 class="card-header">
+        <div class="card draggable-card" draggable="true">
+            <h5 id="{{ list.id }}" class="card-header">
                 {{ list.name }}
                 <a href="{% url 'list-update' table.pk list.pk%}" class="btn fa fa-edit" ></a>
                 <a href="{% url 'list-delete' table.pk list.pk%}" class="btn fa fa-remove" style="margin-left: -5%"></a>
