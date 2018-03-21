@@ -10,9 +10,8 @@
             <a href="{% url 'table-update' table.pk %}"><h1 class="display-4">{{ table.name}}</h1></a>
         </div>
     </div>
-
     <p class="lead text-muted">Manage your project {{ table.name}}.</p>
-    <a href="{% url 'list-create' table.pk%}" class="btn btn-default" style="width:100%">Add a list</a>
+    <a href="{% url 'list-create' table.pk%}" class="btn btn-default">Add a list</a>
     <hr/>
     <div class="card-columns">
       {% for list in table.list_set.all %}
@@ -20,7 +19,7 @@
             <h5 class="card-header">
                 {{ list.name }}
                 <a href="{% url 'list-update' table.pk list.pk%}" class="btn fa fa-edit" ></a>
-                <a href="{% url 'list-delete' table.pk list.pk%}" class="btn fa fa-remove" style="margin-left: -5%"></a>
+                <a href="{% url 'list-delete' table.pk list.pk%}" class="btn fa fa-remove"></a>
             </h5>
             <div class="card-body">
                 {% for card in list.card_set.all %}
@@ -28,8 +27,8 @@
                     <a href="{% url 'card-detail' table.pk list.pk card.id %}">{{card.title}}</a>
                 </div>
                 {% endfor %}
-                <a href="{% url 'card-create' table.pk list.pk%}" style="color: black; text-decoration: none;">
-                    <div class="card add_task" style="background: #e4eded">
+                <a href="{% url 'card-create' table.pk list.pk%}">
+                    <div class="card add_task">
                         <p>Add a task...</p>
                     </div>
                 </a>
