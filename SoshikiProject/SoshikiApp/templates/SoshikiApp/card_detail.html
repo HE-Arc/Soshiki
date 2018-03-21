@@ -15,17 +15,15 @@
     <h3><i class="fa fa-file"></i>Fichiers</h3>
     {{card.file}}
     <h3><i class="fa fa-comments"></i>Commentaires</h3>
-    <div class="card-columns">
     {% for comment in card.comment_set.all %}
-        <div class="card">
-            <div class="card-header">
-                <strong>{{comment.creator_id}}</strong> <span class="text-secondary">commented on {{comment.date |date:"d F Y"}} at {{comment.date|date:"H:i"}}</span>
-            </div>
-            <div class="card-body">
-                <a>{{comment.value}}</a>
-            </div>
+    <div class="card comment-card">
+        <div class="card-header">
+            <strong>{{comment.creator.username}}</strong> <span class="text-secondary">commented on {{comment.date |date:"d F Y"}} at {{comment.date|date:"H:i"}}</span>
         </div>
-    {% endfor %}
+        <div class="card-body">
+            {{comment.value}}
+        </div>
     </div>
+    {% endfor %}
 </div>
 {% endblock %}
