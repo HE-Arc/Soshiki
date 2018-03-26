@@ -12,7 +12,7 @@ class Table(models.Model):
     name = models.CharField(max_length=200)
     favorite = models.BooleanField(default=False)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
-    background = models.FileField(blank=True, null=True)
+    background = models.ImageField(blank=True, null=True)
 
     def __str__(self):
         return self.name
