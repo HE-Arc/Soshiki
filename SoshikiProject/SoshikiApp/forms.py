@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.admin.widgets import AdminSplitDateTime
 from django.contrib.auth.models import User
-from .models import Card, List, Table
+from .models import Card, List, Table, Comment
 
 
 class SignupForm(UserCreationForm):
@@ -51,3 +51,12 @@ class TableForm(forms.ModelForm):
     class Meta:
         model = Table
         fields = ['name','background', 'favorite']
+
+
+class CommentForm(forms.ModelForm):
+
+    value = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Comment here...'}))
+
+    class Meta:
+        model = Comment
+        fields = ['value']

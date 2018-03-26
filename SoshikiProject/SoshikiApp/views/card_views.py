@@ -18,6 +18,11 @@ class CardDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView
         table = Table.objects.get(id=l.table_id)
         return table.creator_id == self.request.user.id
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['current_table'] = self.kwargs["table"]
+        context['current_list'] = self.kwargs["list"]
+        return context
 
 class CardCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
     model = Card
@@ -54,6 +59,12 @@ class CardUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView
 
     def get_success_url(self):
         return reverse_lazy('table-detail', kwargs={'pk': self.kwargs["table"]})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['current_table'] = self.kwargs["table"]
+        context['current_list'] = self.kwargs["list"]
+        return context
 
 
 class CardDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):

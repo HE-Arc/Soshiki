@@ -4,26 +4,35 @@
 
 {% block content %}
 <div class="container allPages">
-    <h1><i class="fa fa-address-card"></i> {{card.title}}</h1>
 
-    <h3><i class="fa fa-align-left"></i>Description</h3>
-    {{card.description}}
-    <h3><i class="fa fa-calendar"></i>Deadline</h3>
-    <div class="card {{ card.get_deadline_info | safe }} w-25">
-        {{card.deadline|date:"d F Y H:i"}}
+    <div class="row">
+        <div class="col-md-4">
+            <h1 class="display-4">{{card.title}}<a href="{% url 'card-update' current_table current_list card.pk %}" class="btn fa fa-edit" ></a></h1>
+        </div>
     </div>
-    <h3><i class="fa fa-file"></i>Fichiers</h3>
-    {{card.file}}
-    <h3><i class="fa fa-comments"></i>Commentaires</h3>
+    <p class="lead text-muted">{{card.description}}</p>
+    <hr/>
+    <h4><i class="fa fa-calendar"></i> Deadline</h3>
+    <div class="card {{ card.get_deadline_info | safe }}">
+      {{card.deadline|date:"d F Y H:i"}}
+    </div>
+    <hr/>
+    <!-- <h4><i class="fa fa-file"></i> Files</h4>
+    {{card.file}} -->
+    <h4><i class="fa fa-comments"></i> Notes</h4>
+    <a href="{% url 'comment-create' current_table current_list card.pk%}" class="btn btn-default btn-sm">Add a note</a>
     {% for comment in card.comment_set.all %}
     <div class="card comment-card">
         <div class="card-header">
-            <strong>{{comment.creator.username}}</strong> <span class="text-secondary">commented on {{comment.date |date:"d F Y"}} at {{comment.date|date:"H:i"}}</span>
+            <span class="text-secondary">Added on {{comment.date |date:"d F Y"}} at {{comment.date|date:"H:i"}}</span>
+            <a href="{% url 'comment-update' current_table current_list card.pk comment.pk %}" class="btn fa fa-edit" ></a>
+            <a href="{% url 'comment-delete' current_table current_list card.pk comment.pk %}" class="btn fa fa-remove"></a>
         </div>
         <div class="card-body">
             {{comment.value}}
         </div>
     </div>
     {% endfor %}
+    <hr/>
 </div>
 {% endblock %}

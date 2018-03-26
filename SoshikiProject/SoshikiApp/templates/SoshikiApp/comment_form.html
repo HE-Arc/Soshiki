@@ -1,23 +1,13 @@
 {% extends 'SoshikiApp/base.html' %}
 
-{% block title %}Add a card{% endblock %}
+{% block title %}Add a note{% endblock %}
 
 {% block content %}
 
 {{ form.media }}
 
 <div class="container allPages">
-    <div class="row">
-        <div class="col-md-6">
-            <h1>Create/Update a card</h1>
-        </div>
-        {% if form.instance.id %}
-            <div class="col-md-4">
-                <a href="{% url 'card-delete' current_table current_list card.pk %}" class="btn fa fa-trash"></a>
-            </div>
-        {% endif %}
-    </div>
-
+    <h1>Create a note</h1>
     <div style="width:100%">
         <form action="" method="post">
             {%csrf_token%}
@@ -33,7 +23,6 @@
             <div class="form-group has-errors text-danger small">
             </div>
             <div class="form-group">
-                {{field.label_tag}}
                 {{field}}
             </div>
             {% endfor %}
