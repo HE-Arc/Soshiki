@@ -51,6 +51,7 @@ class TableDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteVie
         self.object = self.get_object()
         return self.object.creator_id == self.request.user.id
 
+
 def reorder_lists(request):
     # TODO: Quid de la sécurité
     if request.is_ajax():

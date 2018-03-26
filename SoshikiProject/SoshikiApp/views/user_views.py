@@ -11,6 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from SoshikiApp.forms import SignupForm
 
+
 def signup_view(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
