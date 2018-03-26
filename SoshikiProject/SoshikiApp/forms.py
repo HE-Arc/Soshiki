@@ -36,8 +36,6 @@ class CardForm(forms.ModelForm):
 class ListForm(forms.ModelForm):
 
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}))
-    position = forms.IntegerField(required=False, widget=forms.NumberInput(attrs={'class': 'form-control',
-                                                                                  'placeholder': '0'}))
 
     class Meta:
         model = List

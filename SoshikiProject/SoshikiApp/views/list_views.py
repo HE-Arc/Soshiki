@@ -19,7 +19,11 @@ class ListCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView
     def form_valid(self, form):
         form.instance.table_id = self.kwargs["table"]
         # Getting maximum position of existing positions
-        form.instance.position = List.objects.all().filter(table_id=self.kwargs["table"]).order_by("-position")[0].position + 1
+        lists = List.objects.all().filter(table_id=self.kwargs["table"])
+        if lists.count() > 0:
+            form.instance.position = lists.order_by("-position")[0].position + 1
+        else:
+            form.instance.position = 1
         return super(ListCreateView, self).form_valid(form)
 
     def get_success_url(self):
