@@ -107,10 +107,20 @@ $('#save-reorder-btn').click(function () {
       'arrayIDs': arrayIDs
     },
     success: function (data) {
-      // pass
+      $("#ajax_error").html('<div class="alert alert-success" role="alert">Order saved!</div>');
+      window.setTimeout(function () {
+        $(".alert").fadeTo(500, 0).slideUp(500, function () {
+          $(this).remove();
+        });
+      }, 3000);
     },
     error: function (data) {
-      // pass
+      $("#ajax_error").html('<div class="alert alert-danger" role="alert">Oops! Something went wrong. Please reload this page.</div>');
+      window.setTimeout(function () {
+        $(".alert").fadeTo(500, 0).slideUp(500, function () {
+          $(this).remove();
+        });
+      }, 3000);
     }
   });
 });
