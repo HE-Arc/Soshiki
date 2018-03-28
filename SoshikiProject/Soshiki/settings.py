@@ -81,7 +81,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': os.environ.get('GROUPNAME'),
-        'USER': os.environ.get('USER'),
+        'USER': os.environ.get('MYSQL_USER') if os.environ.get('MYSQL_USER') else os.environ.get('GROUPNAME'),
         'PASSWORD': os.environ.get('PASSWORD'),
         'HOST': os.environ.get('MYSQL_HOST'),
         'PORT': os.environ.get('MYSQL_PORT'),
