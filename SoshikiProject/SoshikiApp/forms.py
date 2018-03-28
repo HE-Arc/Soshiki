@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Card, List, Table
+from .models import Card, List, Table, Comment
 
 
 class SignupForm(UserCreationForm):
@@ -36,8 +36,6 @@ class CardForm(forms.ModelForm):
 class ListForm(forms.ModelForm):
 
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}))
-    position = forms.IntegerField(required=False, widget=forms.NumberInput(attrs={'class': 'form-control',
-                                                                                  'placeholder': '0'}))
 
     class Meta:
         model = List
@@ -52,7 +50,16 @@ class TableForm(forms.ModelForm):
 
     class Meta:
         model = Table
-        fields = ['name', 'background', 'favorite']
+        fields = ['name','background', 'favorite']
+
+
+class CommentForm(forms.ModelForm):
+
+    value = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Comment here...'}))
+
+    class Meta:
+        model = Comment
+        fields = ['value']
 
 
 class UserUpdateForm(forms.ModelForm):

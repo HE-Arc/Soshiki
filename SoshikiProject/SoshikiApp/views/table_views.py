@@ -53,11 +53,36 @@ class TableDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteVie
 
 
 def reorder_lists(request):
-    # TODO: Quid de la sécurité
+    is_validated = True
+
     if request.is_ajax():
         ids = request.POST.getlist("arrayIDs[]")
-        position = 1
-        for id in ids:
-            List.objects.filter(id=id).update(position=position)
-            position += 1
+
+        if check_ids_in_db(request.user.id, ids):
+            position = 1
+
+            for id in ids:
+                List.objects.filter(id=id).update(position=position)
+                position += 1
+        else:
+            is_validated = False
+    else:
+        is_validated = False
+
+    # Renvoie une réponse Ajax
+    if is_validated:
         return HttpResponse("OK")
+    else:
+        return HttpResponse("Error", status=401)
+
+
+def check_ids_in_db(user_id, ids):
+    is_ok = True
+    table_ids = List.objects.filter(id__in=ids).values_list('table_id', flat=True)
+    creator_ids = Table.objects.filter(id__in=table_ids).values_list('creator_id', flat=True)
+
+    for id in creator_ids:
+        if id is not user_id:
+            is_ok = False
+
+    return is_ok

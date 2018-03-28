@@ -3,3 +3,4 @@ from .list_views import *
 from .card_views import *
 from .home_views import *
 from .user_views import *
+from .comment_views import *
