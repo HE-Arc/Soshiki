@@ -1,0 +1,59 @@
+{% extends "SoshikiApp/base.html" %}
+
+{% block title %}Log in{% endblock %}
+
+{% block content %}
+
+<div class="container allPages">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="display-4 mb-5">Log in</h1>
+    </div>
+  </div>
+
+    {% load addcss %}
+
+  {% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+      please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to see this page.</p>
+    {% endif %}
+  {% endif %}
+
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+      <div class="row">
+          <div class="col-md-12">
+              {{ form.username.label }} : 
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-12">
+              {{ form.username|addcss:"form-control"}}
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-12">
+              {{ form.password.label }} :
+          </div>
+          <div class="col-md-12">
+              {{ form.password|addcss:"form-control"}}
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-12">
+              <input type="submit" class="btn btn-default btn-lg form-control" value="LOGIN"/>
+              <input type="hidden" name="next" value="{{ next }}"/>
+          </div>
+      </div>
+
+  </form>
+
+  {# Assumes you setup the password_reset view in your URLconf #}
+  <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+</div>
+
+{% endblock %}

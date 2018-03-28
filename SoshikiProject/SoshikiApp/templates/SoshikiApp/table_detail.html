@@ -18,7 +18,7 @@
 
     <div class="row">
         <div class="col-md-4">
-            <a href="{% url 'table-update' table.pk %}"><h1 class="display-4">{{ table.name}}</h1></a>
+            <h1 class="display-4">{{table.name}}<a href="{% url 'table-update' table.pk %}" class="btn fa fa-edit" ></a></h1>
         </div>
     </div>
     <p class="lead text-muted">Manage your project {{ table.name}}.</p>
@@ -26,6 +26,7 @@
     <button id="reorder-btn" class="btn btn-warning btn-sm" style="width:100%">Reorder lists</button>
     <button id="save-reorder-btn" class="btn btn-info btn-sm" style="width:100%;display:none;">Save changes</button>
     <hr/>
+    <div id="ajax_error"></div>
     <div class="card-columns">
       {% for list in table.list_set.all|dictsort:"position" %}
         <div class="card">
@@ -36,13 +37,15 @@
             </h5>
             <div class="card-body">
                 {% for card in list.card_set.all|dictsort:"position" %}
-                <div id="{{ card.id }}" class="card list-card">
-                    <a href="{% url 'card-detail' table.pk list.pk card.id %}">{{card.title}}</a>
-                </div>
+                <a href="{% url 'card-detail' table.pk list.pk card.id %}">
+                  <div id="{{ card.id }}" class="card list-card">
+                    {{card.title}}
+                  </div>
+                </a>
                 {% endfor %}
                 <a href="{% url 'card-create' table.pk list.pk%}">
-                    <div class="card add_task">
-                        <p>Add a task...</p>
+                    <div class="card list-card add_task">
+                        Add a task...
                     </div>
                 </a>
             </div>

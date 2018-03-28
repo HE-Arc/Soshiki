@@ -18,6 +18,11 @@ class CardDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView
         table = Table.objects.get(id=l.table_id)
         return table.creator_id == self.request.user.id
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['current_table'] = self.kwargs["table"]
+        context['current_list'] = self.kwargs["list"]
+        return context
 
 class CardCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
     model = Card
@@ -31,7 +36,11 @@ class CardCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView
     def form_valid(self, form):
         form.instance.list_id = self.kwargs["list"]
         # Getting maximum position of existing positions
-        form.instance.position = Card.objects.all().filter(list_id=self.kwargs["list"]).order_by("-position")[0].position + 1
+        cards = Card.objects.all().filter(list_id=self.kwargs["list"])
+        if cards.count() > 0:
+            form.instance.position = cards.order_by("-position")[0].position + 1
+        else:
+            form.instance.position = 1
         return super(CardCreateView, self).form_valid(form)
 
     def get_success_url(self):
@@ -54,6 +63,12 @@ class CardUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView
 
     def get_success_url(self):
         return reverse_lazy('table-detail', kwargs={'pk': self.kwargs["table"]})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['current_table'] = self.kwargs["table"]
+        context['current_list'] = self.kwargs["list"]
+        return context
 
 
 class CardDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):

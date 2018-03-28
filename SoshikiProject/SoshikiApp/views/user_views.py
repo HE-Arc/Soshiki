@@ -9,7 +9,8 @@ from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
-from SoshikiApp.forms import SignupForm
+from ..forms import SignupForm, UserUpdateForm
+
 
 def signup_view(request):
     if request.method == 'POST':
@@ -48,8 +49,8 @@ class UserDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView
 
 class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = User
+    form_class = UserUpdateForm
     slug_field = 'username'
-    fields = ['username', 'email']
     template_name = 'SoshikiApp/user_form.html'
 
     def test_func(self):
