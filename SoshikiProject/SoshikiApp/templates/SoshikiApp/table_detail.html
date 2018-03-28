@@ -3,7 +3,18 @@
 {% block title %}Table details{% endblock %}
 
 {% block content %}
-<div class="container allPages">
+<head>
+    <style>
+        body{
+            background: url(/media/{{table.background}}) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+    </style>
+</head>
+<div class="container allPages table-detail">
 
     <div class="row">
         <div class="col-md-4">
@@ -36,6 +47,7 @@
                 </a>
             </div>
         </div>
+
       {% endfor %}
     </div>
 </div>

@@ -1,4 +1,7 @@
 from django.urls import path, include
+from django.conf.urls import url
+from django.conf import settings
+from django.views.static import serve
 
 
 from .views import *
@@ -30,3 +33,10 @@ urlpatterns = [
     path('tables/<table>/list/<list>/card/<pk>/update', card_views.CardUpdateView.as_view(), name='card-update'),
     path('tables/<table>/list/<list>/card/<pk>/delete', card_views.CardDeleteView.as_view(), name='card-delete'),
 ]
+
+# debug url to try locally
+if settings.DEBUG:
+    urlpatterns += [
+    url(r'^media/(?P<path>.*)$', serve,
+    {'document_root': settings.MEDIA_ROOT,}),
+    ]
