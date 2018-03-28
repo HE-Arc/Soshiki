@@ -55,11 +55,11 @@ class TableForm(forms.ModelForm):
         fields = ['name', 'background', 'favorite']
 
 
-# class LoginForm(forms.ModelForm):
-#
-#     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'User name'}))
-#     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-#
-#     class Meta:
-#         model = User
-#         fields = ['use', 'password']
+class UserUpdateForm(forms.ModelForm):
+
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'User name'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
+    class Meta:
+        model = User
+        fields = ['username', 'password']
