@@ -33,7 +33,10 @@ urlpatterns = [
     path('tables/<table>/list/<list>/card/<pk>/delete', card_views.CardDeleteView.as_view(), name='card-delete'),
 
     # Routes for the CRUD of the Comment model
-    path('tables/<table>/list/<list>/card/<card>/comment/create', comment_views.CommentCreateView.as_view(), name='comment-create'),
-    path('tables/<table>/list/<list>/card/<card>/comment/<pk>/update', comment_views.CommentUpdateView.as_view(), name='comment-update'),
-    path('tables/<table>/list/<list>/card/<card>/comment/<pk>/delete', comment_views.CommentDeleteView.as_view(), name='comment-delete'),
+    path('tables/<table>/list/<list>/card/<card>/comment/create', comment_views.CommentCreateView.as_view(),
+         name='comment-create'),
+    path('tables/<table>/list/<list>/card/<card>/comment/<pk>/update', comment_views.CommentUpdateView.as_view(),
+         name='comment-update'),
+    path('tables/<table>/list/<list>/card/<card>/comment/<pk>/delete', comment_views.CommentDeleteView.as_view(),
+         name='comment-delete'),
 ]

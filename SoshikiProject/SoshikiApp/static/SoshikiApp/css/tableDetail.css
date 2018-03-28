@@ -22,6 +22,10 @@ a h1:hover {
     background-color: #e58900;
 }
 
+h1 .fa-edit{
+    font-size: 30px;
+}
+
 .fa-remove:hover {
     background-color: #cc2e30;
 }
