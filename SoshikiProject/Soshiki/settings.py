@@ -130,7 +130,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # https://www.codeschool.com/courses/digging-into-django
 
-MEDIA_ROOT = os.path.join(BASE_DIR, '../../../media/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
