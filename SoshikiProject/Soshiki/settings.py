@@ -142,9 +142,9 @@ if DEBUG :
 else:
 # cf. Home2Share
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST = 'smtp'
-    EMAIL_PORT = 1025
+    EMAIL_HOST = os.environ.get('SMTP_HOST'),
+    EMAIL_PORT = os.environ.get('SMTP_PORT'),
     EMAIL_USER = ''
     EMAIL_PASSWORD = ''
 
-DEFAULT_FROM_EMAIL = 'Webmaster@Soshiki.com'
+DEFAULT_FROM_EMAIL = 'no-reply@soshiki'
