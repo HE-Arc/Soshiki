@@ -147,4 +147,4 @@ else:
     EMAIL_USER = ''
     EMAIL_PASSWORD = ''
 
-DEFAULT_FROM_EMAIL = 'no-reply@soshiki'
+DEFAULT_FROM_EMAIL = 'no-reply@soshiki.com'
