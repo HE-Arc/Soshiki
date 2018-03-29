@@ -22,7 +22,9 @@
                     <a href="{% url 'table-detail' table.pk %}" class="card_link">
                         <div class="card text-white bg-secondary mb-3 tables">
                             <div class="card-header">{{ table.name }}</div>
-                            <div class="card-body text-dark"></div>
+                            <div class="card-body text-dark" style="background: url(/media/{{table.background}}) no-repeat center center fixed;">
+                                <br/>
+                            </div>
                         </div>
                     </a>
                 {% endif %}
@@ -43,7 +45,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body text-warning"></div>
+                            <div class="card-body text-warning" style="background: url(/media/{{table.background}}) no-repeat center center fixed;">
+                                <br/>
+                            </div>
                         </div>
                     </a>
                 {% endif %}

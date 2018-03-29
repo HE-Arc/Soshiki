@@ -128,7 +128,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# https://www.codeschool.com/courses/digging-into-django
+
+MEDIA_ROOT = os.path.join(BASE_DIR, '../../../media/')
 MEDIA_URL = '/media/'
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
@@ -136,9 +138,3 @@ LOGIN_REDIRECT_URL = '/'
 
 # Logs any emails sent to the console
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-
-# https://www.codeschool.com/courses/digging-into-django
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
-
