@@ -27,7 +27,7 @@ def signup_view(request):
                 'domain': current_site.domain,
             })
             to_email = form.cleaned_data.get('email')
-            email = EmailMessage(mail_subject, message, to=[to_email])
+            email = EmailMessage(mail_subject, message, to=[to_email], from_email='Webmaster@Soshiki.com')
             email.send()
             # Login et Redirection
             login(request, user)

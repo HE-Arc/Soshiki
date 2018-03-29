@@ -137,4 +137,14 @@ MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = '/'
 
 # Logs any emails sent to the console
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+if DEBUG :
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+# cf. Home2Share
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'smtp'
+    EMAIL_PORT = 1025
+    EMAIL_USER = ''
+    EMAIL_PASSWORD = ''
+
+DEFAULT_FROM_EMAIL = 'Webmaster@Soshiki.com'
