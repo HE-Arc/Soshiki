@@ -46,7 +46,6 @@ class TableForm(forms.ModelForm):
 
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}))
     favorite = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class': 'form-control'}))
-    background = forms.FileField(required=False, widget=forms.FileInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = Table

@@ -12,7 +12,8 @@ class Table(models.Model):
     name = models.CharField(max_length=200)
     favorite = models.BooleanField(default=False)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
-    background = models.ImageField(blank=True, null=True)
+    background = models.ImageField(upload_to='background_images',
+                                   default='background_images/default.png')
 
     def __str__(self):
         return self.name

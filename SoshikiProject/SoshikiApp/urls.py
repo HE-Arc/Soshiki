@@ -1,4 +1,7 @@
 from django.urls import path, include
+from django.conf.urls import url
+from django.conf import settings
+from django.views.static import serve
 
 
 from .views import *
@@ -40,3 +43,10 @@ urlpatterns = [
     path('tables/<table>/list/<list>/card/<card>/comment/<pk>/delete', comment_views.CommentDeleteView.as_view(),
          name='comment-delete'),
 ]
+
+# debug url to try locally
+if settings.DEBUG:
+    urlpatterns += [
+    url(r'^media/(?P<path>.*)$', serve,
+    {'document_root': settings.MEDIA_ROOT,}),
+    ]

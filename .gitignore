@@ -192,6 +192,5 @@ fabric.properties
 Gemfile
 Gemfile.lock
 Capfile
-config/
 
 # End of https://www.gitignore.io/api/pycharm
