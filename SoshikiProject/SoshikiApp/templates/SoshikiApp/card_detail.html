@@ -7,7 +7,11 @@
 
     <div class="row">
         <div class="col-md-4">
-            <h1 class="display-4">{{card.title}}<a href="{% url 'card-update' current_table current_list card.pk %}" class="btn fa fa-edit" ></a></h1>
+            <h1 class="display-4">
+                <a href="{% url 'table-detail' current_table%}" class="btn fa fa-angle-left" ></a>
+                {{card.title}}
+                <a href="{% url 'card-update' current_table current_list card.pk %}" class="btn fa fa-edit" ></a>
+            </h1>
         </div>
     </div>
     <p class="lead text-muted">{{card.description}}</p>
@@ -20,10 +24,9 @@
     <!-- <h4><i class="fa fa-file"></i> Files</h4>
     {{card.file}} -->
     <h4><i class="fa fa-comments"></i> Notes</h4>
-    <a href="{% url 'comment-create' current_table current_list card.pk%}" class="btn btn-default btn-sm">Add a note</a>
     {% for comment in card.comment_set.all %}
     <div class="card comment-card">
-        <div class="card-header">
+        <div class="card-header note">
             <span class="text-secondary">Added on {{comment.date |date:"d F Y"}} at {{comment.date|date:"H:i"}}</span>
             <a href="{% url 'comment-update' current_table current_list card.pk comment.pk %}" class="btn fa fa-edit" ></a>
             <a href="{% url 'comment-delete' current_table current_list card.pk comment.pk %}" class="btn fa fa-remove"></a>
@@ -33,6 +36,11 @@
         </div>
     </div>
     {% endfor %}
+        <a href="{% url 'comment-create' current_table current_list card.pk%}">
+            <div class="card list-card add_task">
+                Add a Note...
+            </div>
+        </a>
     <hr/>
 </div>
 {% endblock %}

@@ -3,3 +3,16 @@
     padding:5px;
     width: 36rem;
 }
+
+.fa-angle-left{
+    font-size: 30px;
+    margin-left: -5%;
+}
+
+.fa-angle-left:hover{
+    color: #999999;
+}
+
+.note .fa-remove{
+    margin-left: -3%;
+}
