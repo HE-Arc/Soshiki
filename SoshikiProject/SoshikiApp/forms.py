@@ -49,7 +49,7 @@ class TableForm(forms.ModelForm):
 
     class Meta:
         model = Table
-        fields = ['name','background', 'favorite']
+        fields = ['name', 'background', 'favorite']
 
 
 class CommentForm(forms.ModelForm):

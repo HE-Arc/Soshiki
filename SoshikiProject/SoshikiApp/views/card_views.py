@@ -24,6 +24,7 @@ class CardDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView
         context['current_list'] = self.kwargs["list"]
         return context
 
+
 class CardCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
     model = Card
     form_class = CardForm
@@ -44,7 +45,8 @@ class CardCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView
         return super(CardCreateView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('table-detail', kwargs={'pk': self.kwargs["table"]})
+        return reverse_lazy('card-detail', kwargs={'table': self.kwargs["table"], 'list': self.kwargs["list"],
+                                                   'pk': self.kwargs["pk"]})
 
 
 class CardUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
@@ -62,7 +64,8 @@ class CardUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView
         return super(CardUpdateView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('table-detail', kwargs={'pk': self.kwargs["table"]})
+        return reverse_lazy('card-detail', kwargs={'table': self.kwargs["table"], 'list': self.kwargs["list"],
+                                                   'pk': self.kwargs["pk"]})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -81,4 +84,5 @@ class CardDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView
         return table.creator_id == self.request.user.id
 
     def get_success_url(self):
-        return reverse_lazy('table-detail', kwargs={'pk': self.kwargs["table"]})
+        return reverse_lazy('card-detail', kwargs={'table': self.kwargs["table"], 'list': self.kwargs["list"],
+                                                   'pk': self.kwargs["pk"]})

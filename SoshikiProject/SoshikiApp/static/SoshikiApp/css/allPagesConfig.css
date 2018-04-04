@@ -25,3 +25,41 @@
   border-radius: 5px;
   padding: 15px;
 }
+
+.btn-sm{
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    color: #595959;
+    font-weight: bold;
+}
+
+.btn-sm:hover{
+    color: #595959;;
+}
+
+.btn-info{
+    display: none;
+    color: #595959;
+}
+
+.btn-info:hover{
+    background-color: #00a5bb;
+    color: #595959;
+}
+
+.btn-warning:hover{
+    background-color: #ffc300;
+}
+
+.lead{
+    color: #333333 !important;
+}
+
+.btn-default:hover{
+    background-color: #adccaa;
+}
+
+.btn-default{
+    width:100%;
+}

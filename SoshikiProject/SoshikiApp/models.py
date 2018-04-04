@@ -41,7 +41,7 @@ class Card(models.Model):
     title = models.CharField(max_length=200)
     deadline = models.DateTimeField('Deadline')
     description = models.TextField()
-    file = models.FileField(blank=True, null=True)
+    file = models.FileField(blank=True, null=True, upload_to='card_files')
     position = models.IntegerField()
     list = models.ForeignKey(List, on_delete=models.CASCADE)
 

@@ -10,10 +10,10 @@
     </div>
   </div>
 
-  <p> User : {{ user.username }}</p>
-  <p> Email : {{ user.email }}</p>
+  <p class="form-control"> User : {{ user.username }}</p>
+  <p class="form-control"> Email : {{ user.email }}</p>
   {% if request.user.is_authenticated and request.user.username == user.username %}
-  <a href="{% url 'profile-update' request.user.username %}">Update</a>
+  <a href="{% url 'profile-update' request.user.username %}" class="btn btn-sm btn-warning">Update</a>
   {% endif %}
 
 </div>
