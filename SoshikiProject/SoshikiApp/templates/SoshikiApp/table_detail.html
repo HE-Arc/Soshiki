@@ -30,7 +30,7 @@
     <div id="ajax_error"></div>
     <div class="card-columns">
       {% for list in table.list_set.all|dictsort:"position" %}
-        <div class="card">
+        <div class="card carte">
             <h5 id="{{ list.id }}" class="card-header">
                 {{ list.name }}
                 <a href="{% url 'list-update' table.pk list.pk%}" class="btn fa fa-edit" ></a>
