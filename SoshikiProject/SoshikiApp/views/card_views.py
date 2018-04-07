@@ -45,8 +45,7 @@ class CardCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView
         return super(CardCreateView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('card-detail', kwargs={'table': self.kwargs["table"], 'list': self.kwargs["list"],
-                                                   'pk': self.kwargs["pk"]})
+        return reverse_lazy('table-detail', kwargs={'pk': self.kwargs["table"]})
 
 
 class CardUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
