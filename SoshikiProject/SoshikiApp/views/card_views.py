@@ -83,5 +83,4 @@ class CardDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView
         return table.creator_id == self.request.user.id
 
     def get_success_url(self):
-        return reverse_lazy('card-detail', kwargs={'table': self.kwargs["table"], 'list': self.kwargs["list"],
-                                                   'pk': self.kwargs["pk"]})
+        return reverse_lazy('table-detail', kwargs={'pk': self.kwargs["table"]})
